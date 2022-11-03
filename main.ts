@@ -8,6 +8,7 @@ async function handler(req: Request) {
 
   console.log("CODE:", code);
   console.log("STATE:", state);
+  console.log(`Referer: ${req.headers.get("Referer")}`);
 
   const request = new Request("https://github.com/login/oauth/access_token", {
     method: "POST",
