@@ -28,13 +28,11 @@ async function handler(req: Request) {
 
   const resp = await fetch(request);
   const jsonData = await resp.json();
-  console.log(jsonData);
   let returnUrl: string;
 
   // alfred://runtrigger/com.whomwah.alfred.github/auth/?argument=test
   if (jsonData.error) {
-    const error =
-      `${jsonData.error.error}: ${jsonData.error.error_description}`;
+    const error = `${jsonData.error}: ${jsonData.error_description}`;
     returnUrl = `${Deno.env.get("REDIRECT_URL")}?argument=@@@error@@@${error}`;
   } else {
     returnUrl = `${
